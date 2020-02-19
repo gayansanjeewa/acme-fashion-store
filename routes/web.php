@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::prefix('cloths')->group(function () {
+//    Route::get('users', function () {
+//        // Matches The "/admin/users" URL
+//    });
+//});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
