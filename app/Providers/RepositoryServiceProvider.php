@@ -3,7 +3,9 @@
 
 namespace App\Providers;
 
+use App\Repository\ClotheRepository;
 use App\Repository\UserRepository;
+use Domain\Repository\ClotheRepositoryInterface;
 use Domain\Repository\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,5 +20,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(ClotheRepositoryInterface::class, ClotheRepository::class);
     }
 }
