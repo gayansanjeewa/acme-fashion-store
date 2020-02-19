@@ -19,4 +19,12 @@ class ClotheRepository implements ClotheRepositoryInterface
     {
         return Clothe::query()->offset($page)->limit($limit)->get();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function create(array $configurations)
+    {
+        Clothe::query()->insert($configurations);
+    }
 }

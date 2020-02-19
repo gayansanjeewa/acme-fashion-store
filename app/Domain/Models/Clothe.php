@@ -9,5 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Clothe extends Model
 {
-    //
+    protected $fillable = ['name', 'product_code', 'cost', 'selling_price', 'brand_id', 'color', 'size', 'short_description'];
+
 }

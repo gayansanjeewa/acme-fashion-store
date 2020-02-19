@@ -17,12 +17,12 @@ class CreateClothesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('product_code')->unique();
-            $table->text('short_description');
+            $table->text('short_description')->nullable();
             $table->double('cost');
             $table->double('selling_price');
             $table->unsignedBigInteger('brand_id');
-            $table->string('color');
-            $table->string('size');
+            $table->string('color')->nullable();
+            $table->string('size')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
         });

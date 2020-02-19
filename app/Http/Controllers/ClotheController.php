@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Domain\Command\CreateClotheCommand;
 use Domain\Query\GetClothesQuery;
 use Illuminate\Http\Request;
 
@@ -30,18 +31,34 @@ class ClotheController extends Controller
      */
     public function create()
     {
-        //
+        return view('clothes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'cost' => 'required|numeric|min:0',
+            'brand_id' => 'required',
+            'description' => 'max:255',
+        ]);
+
+        $criteria = $request->toArray();
+
+        $criteria['short_description'] = $criteria['description'];
+        unset($criteria['_token']);
+        unset($criteria['description']);
+
+        $this->command->dispatch(new CreateClotheCommand($criteria));
+
+        return redirect('clothes');
     }
 
     /**

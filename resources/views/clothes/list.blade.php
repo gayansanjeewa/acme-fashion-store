@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <a href="" class="btn btn-success">Add Clothes</a>
+                        <a href="/clothes/create" class="btn btn-success">Add Clothes</a>
 
                         <div>
                             @if(empty($clothes))

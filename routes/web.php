@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('clothes')->middleware(['auth'])->group(function () {
     Route::get('/', 'ClotheController@index');
+    Route::get('/create', 'ClotheController@create');
+    Route::post('/', 'ClotheController@store');
 });
